@@ -14,3 +14,7 @@ Mouse-free check for resources. Resources screen hotkey and search box auto-sele
 PrehistoricTrueTilesAddon
 
 Low effort addon for True Tiles mod replacing Shale, Nickel, Iridium materials coming with PPP.
+
+RefinedMetalsAreStillMetals
+
+Refined Metals are usable as Raw Metals.

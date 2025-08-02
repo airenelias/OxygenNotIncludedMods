@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotSoFast", "NotSoFast\NotS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefinedMetalsAreStillMetals", "RefinedMetalsAreStillMetals\RefinedMetalsAreStillMetals.csproj", "{F1607CA6-C2B8-5A65-AA6E-B7ED8A6F8F98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkilledEnough", "SkilledEnough\SkilledEnough.csproj", "{05F18DCA-E2D6-6AD6-D290-9F067C995537}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F1607CA6-C2B8-5A65-AA6E-B7ED8A6F8F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1607CA6-C2B8-5A65-AA6E-B7ED8A6F8F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1607CA6-C2B8-5A65-AA6E-B7ED8A6F8F98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F18DCA-E2D6-6AD6-D290-9F067C995537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F18DCA-E2D6-6AD6-D290-9F067C995537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F18DCA-E2D6-6AD6-D290-9F067C995537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F18DCA-E2D6-6AD6-D290-9F067C995537}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,3 +18,7 @@ Low effort addon for True Tiles mod replacing Shale, Nickel, Iridium materials c
 RefinedMetalsAreStillMetals
 
 Refined Metals are usable as Raw Metals.
+
+SkilledEnough
+
+Hide excess skill point notifications for your Duplicants.

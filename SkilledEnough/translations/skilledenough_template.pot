@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Application: Oxygen Not Included"
+"POT Version: 2.0"
+
+#. SkilledEnough.STRINGS.UI.SUPPRESS_BUTTON.DISABLE_TOOLTIP
+msgctxt "SkilledEnough.STRINGS.UI.SUPPRESS_BUTTON.DISABLE_TOOLTIP"
+msgid "Show Skill Points Available notification for {Duplicant}"
+msgstr ""
+
+#. SkilledEnough.STRINGS.UI.SUPPRESS_BUTTON.ENABLE_TOOLTIP
+msgctxt "SkilledEnough.STRINGS.UI.SUPPRESS_BUTTON.ENABLE_TOOLTIP"
+msgid "Suppress Skill Points Available notification for {Duplicant}"
+msgstr ""
+

@@ -163,8 +163,7 @@ namespace SkilledEnough
             Guid skillPointAvailableStatusItem = Traverse.Create(__instance).Field("skillPointAvailableStatusItem").GetValue<Guid>();
             foreach (MinionResume minionResume in Components.MinionResumes)
             {
-                if (!minionResume.HasTag(GameTags.Dead) && !minionResume.HasTag(SkilledEnough) &&
-                    minionResume.TotalSkillPointsGained - minionResume.SkillsMastered > 0)
+                if (!minionResume.HasTag(GameTags.Dead) && !minionResume.HasTag(SkilledEnough) && minionResume.AvailableSkillpoints > 0)
                 {
                     if (!(skillPointAvailableStatusItem == Guid.Empty))
                         return;

@@ -13,8 +13,7 @@ namespace SkilledEnough
                 bool flag = false;
                 foreach (MinionResume minionResume in Components.MinionResumes)
                 {
-                    if (!minionResume.HasTag(GameTags.Dead) && !minionResume.HasTag(SkilledEnoughTools.SkilledEnough) &&
-                        minionResume.TotalSkillPointsGained - minionResume.SkillsMastered > 0)
+                    if (!minionResume.HasTag(GameTags.Dead) && !minionResume.HasTag(SkilledEnoughTools.SkilledEnough) && minionResume.AvailableSkillpoints > 0)
                     {
                         flag = true;
                         break;

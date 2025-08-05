@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Better Repair</Title>
+    <Version>1.0.0</Version>
+    <Description>Repairs require no materials, but take longer to complete</Description>
+    <Copyright>airenelias</Copyright>
+    <SupportedBuild>679336</SupportedBuild>
+    <StaticID>airenelias.BetterRepair</StaticID>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <FileVersion>$(Version)</FileVersion>
+    <TargetFramework>net471</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GameFolder>D:\Steam\steamapps\common\OxygenNotIncluded</GameFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony" HintPath="$(GameFolder)\OxygenNotIncluded_Data\Managed\0Harmony.dll" />
+    <Reference Include="Assembly-CSharp" HintPath="$(GameFolder)\OxygenNotIncluded_Data\Managed\Assembly-CSharp.dll" />
+    <Reference Include="Assembly-CSharp-firstpass" HintPath="$(GameFolder)\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(GameFolder)\OxygenNotIncluded_Data\Managed\UnityEngine.CoreModule.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ILRepack" Version="2.0.44" />
+    <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PLib" Version="4.17.1" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <WorkingDirectory>$(MSBuildProjectDirectory)\bin\$(Configuration)</WorkingDirectory>
+    <InstallFolder>$(USERPROFILE)\Documents\Klei\OxygenNotIncluded\mods\dev\$(MSBuildProjectName)</InstallFolder>
+  </PropertyGroup>
+  <Target Name="ILRepack" AfterTargets="Build">
+    <ItemGroup>
+      <InputAssemblies Include="$(WorkingDirectory)\PLib.dll" />
+    </ItemGroup>
+    <ILRepack TargetPlatformVersion="v4" OutputType="SameAsPrimaryAssembly" MainAssembly="$(TargetPath)" OutputAssembly="$(TargetPath)" InputAssemblies="@(InputAssemblies)" XmlDocumentation="true" Internalize="true" WilcardInputAssemblies="true" WorkingDirectory="$(GameFolder)\OxygenNotIncluded_Data\Managed" />
+  </Target>
+  <Target Name="CopyArtifactsToInstallFolder" AfterTargets="ILRepack">
+    <ItemGroup>
+      <LocalizationFiles Include="$(MSBuildProjectDirectory)\translations\*.po" />
+    </ItemGroup>
+    <Copy SourceFiles="@(LocalizationFiles)" DestinationFiles="@(LocalizationFiles->'$(InstallFolder)\translations\%(Filename).po')" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(InstallFolder)\$(TargetFileName)" />
+    <Copy SourceFiles="preview.png" DestinationFiles="$(InstallFolder)\preview.png" />
+  </Target>
+  <Target Name="WriteYamls" AfterTargets="CopyArtifactsToInstallFolder">
+    <WriteLinesToFile File="$(InstallFolder)\mod.yaml" Overwrite="true" Lines="
+                      title: &quot;$(Title)&quot;;
+                      description: &quot;$(Description)&quot;;
+                      staticID: $(StaticID)" />
+    <WriteLinesToFile File="$(InstallFolder)\mod_info.yaml" Overwrite="true" Lines="
+                      minimumSupportedBuild: $(SupportedBuild);
+                      version: $(Version);
+                      APIVersion: 2" />
+  </Target>
+  <Target Name="CompleteCleanup" AfterTargets="Clean">
+    <RemoveDir Directories="$(WorkingDirectory)\translations" />
+    <RemoveDir Directories="$(InstallFolder)" />
+  </Target>
+</Project>

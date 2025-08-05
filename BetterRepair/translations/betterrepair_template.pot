@@ -1,0 +1,80 @@
+msgid ""
+msgstr ""
+"Application: Oxygen Not Included"
+"POT Version: 2.0"
+
+#. BetterRepair.STRINGS.UI.CHORE.BUILDING.TITLE
+msgctxt "BetterRepair.STRINGS.UI.CHORE.BUILDING.TITLE"
+msgid "Building"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.CHORE.BUILDING.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.CHORE.BUILDING.TOOLTIP"
+msgid "Duplicants with set Building errand can do Repair"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.CHORE.OPERATING.TITLE
+msgctxt "BetterRepair.STRINGS.UI.CHORE.OPERATING.TITLE"
+msgid "Operating"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.CHORE.OPERATING.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.CHORE.OPERATING.TOOLTIP"
+msgid "Duplicants with set Operating errand can do Repair"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.CHORE.TIDYING.TITLE
+msgctxt "BetterRepair.STRINGS.UI.CHORE.TIDYING.TITLE"
+msgid "Tidying"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.CHORE.TIDYING.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.CHORE.TIDYING.TOOLTIP"
+msgid "Duplicants with set Tidying errand can do Repair"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.CHORE.TITLE
+msgctxt "BetterRepair.STRINGS.UI.CHORE.TITLE"
+msgid "Repair Errand Type"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.CONSTRUCTION.TITLE
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.CONSTRUCTION.TITLE"
+msgid "Construction Repair speed bonus (%)"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.CONSTRUCTION.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.CONSTRUCTION.TOOLTIP"
+msgid "Construction (Building) impact on Repair effectiveness"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.MACHINERY.TITLE
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.MACHINERY.TITLE"
+msgid "Machinery Repair speed bonus (%)"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.MACHINERY.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.MACHINERY.TOOLTIP"
+msgid "Machinery (Operating) impact on Repair effectiveness"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.OVERALL.TITLE
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.OVERALL.TITLE"
+msgid "Overall Repair speed (%)"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.OVERALL.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.OVERALL.TOOLTIP"
+msgid "How quickly Repair will be finished"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.STRENGTH.TITLE
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.STRENGTH.TITLE"
+msgid "Strength Repair speed bonus (%)"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.STRENGTH.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.STRENGTH.TOOLTIP"
+msgid "Strength impact on Repair effectiveness"
+msgstr ""
+

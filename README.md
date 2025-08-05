@@ -22,3 +22,7 @@ Refined Metals are usable as Raw Metals.
 SkilledEnough
 
 Hide excess skill point notifications for your Duplicants.
+
+BetterRepair
+
+Repairs require no materials, but take longer to complete.

@@ -104,6 +104,9 @@ namespace SkilledEnough
                 SkillMinionWidget skillMinionWidget = child.GetComponent<SkillMinionWidget>();
                 MinionIdentity minionIdentity;
                 __instance.GetMinionIdentity(skillMinionWidget.assignableIdentity, out minionIdentity, out _);
+                if (minionIdentity == null)
+                    continue;
+
                 if (nameStringKey != null && !minionIdentity.nameStringKey.Equals(nameStringKey))
                     continue;
 

@@ -57,7 +57,7 @@ namespace SkilledEnough
 
         public static void ColorizeLevel()
         {
-            if (headerText == null || levelIndicatorText == null || CurrentlySelectedMinionResume == null)
+            if (CurrentlySelectedMinionResume == null || headerText == null || levelIndicatorText == null)
                 return;
 
             if (CurrentlySelectedMinionResume.HasTag(SkilledEnough))
@@ -97,16 +97,17 @@ namespace SkilledEnough
             Transform content = __instance.gameObject.transform.Find("Minions/Contents/Scroll View/Viewport/Content");
             for (int childIdx = 0; childIdx < content.gameObject.transform.childCount; childIdx++)
             {
+                // iterating over every duplicant row
                 Transform child = content.gameObject.transform.GetChild(childIdx);
                 if (!child.name.Equals("MinionPrefab2"))
                     continue;
 
                 SkillMinionWidget skillMinionWidget = child.GetComponent<SkillMinionWidget>();
-                MinionIdentity minionIdentity;
-                __instance.GetMinionIdentity(skillMinionWidget.assignableIdentity, out minionIdentity, out _);
+                __instance.GetMinionIdentity(skillMinionWidget.assignableIdentity, out MinionIdentity minionIdentity, out _);
                 if (minionIdentity == null)
                     continue;
 
+                // if looking for a duplicant but name doesn't match, skip
                 if (nameStringKey != null && !minionIdentity.nameStringKey.Equals(nameStringKey))
                     continue;
 
@@ -114,8 +115,10 @@ namespace SkilledEnough
                 LocText locText = label.GetComponent<LocText>();
                 if (nameStringKey != null)
                 {
+                    // if looking for a duplicant, then might need to return greens
                     if (colorize)
                     {
+                        // if has mastery points, colorize
                         if (int.Parse(Regex.Replace(locText.text, "<.*?>", string.Empty)) > 0)
                         {
                             locText.SetText(ColorizeMasteryPoint(locText.text));
@@ -125,12 +128,14 @@ namespace SkilledEnough
                     {
                         locText.SetText(DecolorizeMasteryPoint(locText.text));
                     }
-                    return;
                 }
-
-                if (minionIdentity.HasTag(SkilledEnough))
+                else
                 {
-                    locText.SetText(DecolorizeMasteryPoint(locText.text));
+                    // else it's just refresh, keep greens, decolorize others
+                    if (minionIdentity.HasTag(SkilledEnough))
+                    {
+                        locText.SetText(DecolorizeMasteryPoint(locText.text));
+                    }
                 }
             }
         }

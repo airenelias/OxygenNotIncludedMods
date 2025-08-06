@@ -27,7 +27,7 @@ namespace SkilledEnough
         }
 
         [HarmonyPatch(typeof(Localization), "Initialize")]
-        public class Localization_Initialize_Patch
+        public class LocalizationInitializePatch
         {
             public static void Postfix() => Translate(typeof(STRINGS));
 

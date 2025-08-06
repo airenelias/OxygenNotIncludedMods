@@ -10,10 +10,9 @@ namespace SkilledEnough
         [HarmonyPatch(typeof(SkillsScreen), "OnSpawn")]
         public static class SkillsScreenOnSpawnPatch
         {
-            public static void Postfix(ref SkillsScreen __instance, GameObject ___Prefab_minionLayout, GameObject ___Prefab_minion)
+            public static void Postfix(SkillsScreen __instance)
             {
                 SkilledEnoughTools.SkillsScreenInstance = __instance;
-
 
                 Transform currentLevel = __instance.gameObject.transform.Find("Minions/SelectedDuplicant/Top/BoxButtons/CurrentLevel");
                 Transform header = currentLevel.gameObject.transform.Find("Header");
@@ -43,12 +42,13 @@ namespace SkilledEnough
         [HarmonyPatch(typeof(SkillsScreen), "RefreshSelectedMinion")]
         public static class SkillsScreenRefreshSelectedMinionPatch
         {
-            public static void Postfix(ref SkillsScreen __instance)
+            public static void Postfix(SkillsScreen __instance, IAssignableIdentity ___currentlySelectedMinion)
             {
-                IAssignableIdentity currentlySelectedMinion = Traverse.Create(__instance).Field("currentlySelectedMinion").GetValue<IAssignableIdentity>();
-                MinionIdentity minionIdentity;
-                __instance.GetMinionIdentity(currentlySelectedMinion, out minionIdentity, out _);
-                SkilledEnoughTools.CurrentlySelectedMinionResume = minionIdentity?.GetComponent<MinionResume>();
+                __instance.GetMinionIdentity(___currentlySelectedMinion, out MinionIdentity minionIdentity, out _);
+                if (minionIdentity == null)
+                    return;
+
+                SkilledEnoughTools.CurrentlySelectedMinionResume = minionIdentity.GetComponent<MinionResume>();
                 SkilledEnoughTools.UpdateTooltip();
                 SkilledEnoughTools.ColorizeLevel();
             }
@@ -57,7 +57,7 @@ namespace SkilledEnough
         [HarmonyPatch(typeof(SkillsScreen), "RefreshSkillWidgets")]
         public static class SkillsScreenRefreshSkillWidgetsPatch
         {
-            public static void Postfix(ref SkillsScreen __instance, ref List<SkillMinionWidget> ___sortableRows)
+            public static void Postfix(SkillsScreen __instance)
             {
                 SkilledEnoughTools.ColorizeMasteryPoints(__instance);
             }

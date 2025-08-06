@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
+using static Chore;
 
 namespace BetterRepair
 {
@@ -18,11 +19,13 @@ namespace BetterRepair
         private static float ConstructionSpeedMultiplier;
         private static float MachinerySpeedMultiplier;
         private static float StrengthSpeedMultiplier;
+        private static float RepairThreshold;
         private static bool RepairIsTidyingChore;
         private static bool RepairIsBuildingChore;
         private static bool RepairIsOperatingChore;
 
         private static Dictionary<Repairable, int> repairAmountList = new Dictionary<Repairable, int>();
+        private static Precondition IsNotBrokenEnough;
 
         public override void OnLoad(Harmony harmony)
         {
@@ -43,10 +46,12 @@ namespace BetterRepair
                 ConstructionSpeedMultiplier = config.ConstructionSpeedMultiplier / 100f;
                 MachinerySpeedMultiplier = config.MachinerySpeedMultiplier / 100f;
                 StrengthSpeedMultiplier = config.StrengthSpeedMultiplier / 100f;
+                RepairThreshold = config.RepairThreshold / 100f;
                 RepairIsTidyingChore = config.RepairIsTidyingChore;
                 RepairIsBuildingChore = config.RepairIsBuildingChore;
                 RepairIsOperatingChore = config.RepairIsOperatingChore;
                 UpdateChores();
+                InitRepairPrecondition();
             }
         }
 
@@ -88,6 +93,20 @@ namespace BetterRepair
             }
 
             Traverse.Create(Db.Get().ChoreTypes.Repair).Property("groups").SetValue(repairChoreGroups.ToArray());
+        }
+
+        private static void InitRepairPrecondition()
+        {
+            Precondition precondition = new Precondition();
+            precondition.id = nameof(IsNotBrokenEnough);
+            precondition.description = STRINGS.CHORES.PRECONDITIONS.IS_NOT_BROKEN_ENOUGH;
+            precondition.fn = (ref Precondition.Context context, object data) =>
+            {
+                BuildingHP buildingHp = data as BuildingHP;
+                return buildingHp == null || buildingHp.HitPoints <= buildingHp.MaxHitPoints * RepairThreshold;
+            };
+            precondition.canExecuteOnAnyThread = true;
+            IsNotBrokenEnough = precondition;
         }
 
         private static void UpdateChoreGroupTypes(ChoreGroup choreGroup, bool enableRepair)
@@ -201,6 +220,18 @@ namespace BetterRepair
             if (repairAmountList.ContainsKey(repairable))
             {
                 repairAmountList.Remove(repairable);
+            }
+        }
+
+        [HarmonyPatch(typeof(Repairable.States), "CreateRepairChore")]
+        public class RepairableCreateRepairChorePatch
+        {
+            public static void Postfix(Repairable.SMInstance smi, Chore __result)
+            {
+                BuildingHP buildingHp = smi.master.GetComponent<BuildingHP>();
+                if (buildingHp == null)
+                    return;
+                __result.AddPrecondition(IsNotBrokenEnough, buildingHp);
             }
         }
 

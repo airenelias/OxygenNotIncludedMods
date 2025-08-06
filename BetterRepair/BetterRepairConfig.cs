@@ -13,6 +13,12 @@ namespace BetterRepair
         public int OverallSpeedMultiplier { get; set; } = 100;
 
         [JsonProperty]
+        [Option("STRINGS.UI.THRESHOLD.TITLE",
+            "STRINGS.UI.THRESHOLD.TOOLTIP", Format = "F0")]
+        [Limit(0, 100)]
+        public int RepairThreshold { get; set; } = 40;
+
+        [JsonProperty]
         [Option("STRINGS.UI.MULTIPLIER.CONSTRUCTION.TITLE",
             "STRINGS.UI.MULTIPLIER.CONSTRUCTION.TOOLTIP", Format = "F0")]
         [Limit(0, 100)]

@@ -3,6 +3,11 @@ msgstr ""
 "Application: Oxygen Not Included"
 "POT Version: 2.0"
 
+#. BetterRepair.STRINGS.CHORES.PRECONDITIONS.ABOVE_THRESHOLD
+msgctxt "BetterRepair.STRINGS.CHORES.PRECONDITIONS.ABOVE_THRESHOLD"
+msgid "Above repair threshold"
+msgstr ""
+
 #. BetterRepair.STRINGS.UI.CHORE.BUILDING.TITLE
 msgctxt "BetterRepair.STRINGS.UI.CHORE.BUILDING.TITLE"
 msgid "Building"
@@ -76,5 +81,40 @@ msgstr ""
 #. BetterRepair.STRINGS.UI.MULTIPLIER.STRENGTH.TOOLTIP
 msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.STRENGTH.TOOLTIP"
 msgid "Strength impact on Repair effectiveness"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.TITLE
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.TITLE"
+msgid "Repair Speed"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.RESTORE_TEMPERATURE.TITLE
+msgctxt "BetterRepair.STRINGS.UI.RESTORE_TEMPERATURE.TITLE"
+msgid "Repair calms temperature"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.RESTORE_TEMPERATURE.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.RESTORE_TEMPERATURE.TOOLTIP"
+msgid "Repair gradually restores buildings default temperature"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.THRESHOLD.CONDITION.TITLE
+msgctxt "BetterRepair.STRINGS.UI.THRESHOLD.CONDITION.TITLE"
+msgid "Repair threshold (%)"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.THRESHOLD.CONDITION.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.THRESHOLD.CONDITION.TOOLTIP"
+msgid "Repair errand becomes doable only if building condition drops to this level"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.THRESHOLD.TIME.TITLE
+msgctxt "BetterRepair.STRINGS.UI.THRESHOLD.TIME.TITLE"
+msgid "Complete Repair threshold (cycles)"
+msgstr ""
+
+#. BetterRepair.STRINGS.UI.THRESHOLD.TIME.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.THRESHOLD.TIME.TOOLTIP"
+msgid "Full building repair will be erranded only if it didn't recieve any damage for this amount of cycles"
 msgstr ""
 

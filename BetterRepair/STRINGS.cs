@@ -6,14 +6,31 @@
         {
             public static class PRECONDITIONS
             {
-                public static LocString IS_NOT_BROKEN_ENOUGH = "Above repair threshold";
+                public static LocString ABOVE_THRESHOLD = "Above repair threshold";
             }
         }
 
         public static class UI
         {
+            public static class THRESHOLD
+            {
+                public static class CONDITION
+                {
+                    public static LocString TITLE = "Repair threshold (%)";
+                    public static LocString TOOLTIP = "Repair errand becomes doable only if building condition drops to this level";
+                }
+
+                public static class TIME
+                {
+                    public static LocString TITLE = "Complete Repair threshold (cycles)";
+                    public static LocString TOOLTIP = "Full building repair will be erranded only if it didn't recieve any damage for this amount of cycles";
+                }
+            }
+
             public static class MULTIPLIER
             {
+                public static LocString TITLE = "Repair Speed";
+
                 public static class OVERALL
                 {
                     public static LocString TITLE = "Overall Repair speed (%)";
@@ -39,10 +56,10 @@
                 }
             }
 
-            public static class THRESHOLD
+            public static class RESTORE_TEMPERATURE
             {
-                public static LocString TITLE = "Repair threshold (%)";
-                public static LocString TOOLTIP = "Repair errand becomes doable when building condition drops to this level";
+                public static LocString TITLE = "Repair calms temperature";
+                public static LocString TOOLTIP = "Repair gradually restores buildings default temperature";
             }
 
             public static class CHORE

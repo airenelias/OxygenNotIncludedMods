@@ -1,32 +1,16 @@
 ﻿using HarmonyLib;
-using Klei.AI;
 using KMod;
 using PeterHan.PLib.AVC;
 using PeterHan.PLib.Core;
 using PeterHan.PLib.Options;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using UnityEngine;
-using static Chore;
 
 namespace BetterRepair
 {
     public class BetterRepairPatch : UserMod2
     {
-        private static float OverallSpeedMultiplier;
-        private static float ConstructionSpeedMultiplier;
-        private static float MachinerySpeedMultiplier;
-        private static float StrengthSpeedMultiplier;
-        private static float RepairThreshold;
-        private static bool RepairIsTidyingChore;
-        private static bool RepairIsBuildingChore;
-        private static bool RepairIsOperatingChore;
-
-        private static Dictionary<Repairable, int> repairAmountList = new Dictionary<Repairable, int>();
-        private static Precondition IsNotBrokenEnough;
-
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
@@ -42,196 +26,18 @@ namespace BetterRepair
             {
                 // read the config file each time the game is loaded - so we don't need to restart all the game
                 BetterRepairConfig config = POptions.ReadSettings<BetterRepairConfig>() ?? new BetterRepairConfig();
-                OverallSpeedMultiplier = config.OverallSpeedMultiplier / 100f;
-                ConstructionSpeedMultiplier = config.ConstructionSpeedMultiplier / 100f;
-                MachinerySpeedMultiplier = config.MachinerySpeedMultiplier / 100f;
-                StrengthSpeedMultiplier = config.StrengthSpeedMultiplier / 100f;
-                RepairThreshold = config.RepairThreshold / 100f;
-                RepairIsTidyingChore = config.RepairIsTidyingChore;
-                RepairIsBuildingChore = config.RepairIsBuildingChore;
-                RepairIsOperatingChore = config.RepairIsOperatingChore;
-                UpdateChores();
-                InitRepairPrecondition();
-            }
-        }
-
-        private static void UpdateChores()
-        {
-            List<ChoreGroup> repairChoreGroups = new List<ChoreGroup>();
-
-            ChoreGroup tidyingChoreGroup = Db.Get().ChoreGroups.Get("Basekeeping");
-            if (RepairIsTidyingChore)
-            {
-                UpdateChoreGroupTypes(tidyingChoreGroup, true);
-                repairChoreGroups.Add(tidyingChoreGroup);
-            }
-            else
-            {
-                UpdateChoreGroupTypes(tidyingChoreGroup, false);
-            }
-
-            ChoreGroup buildingChoreGroup = Db.Get().ChoreGroups.Get("Build");
-            if (RepairIsBuildingChore)
-            {
-                UpdateChoreGroupTypes(buildingChoreGroup, true);
-                repairChoreGroups.Add(buildingChoreGroup);
-            }
-            else
-            {
-                UpdateChoreGroupTypes(buildingChoreGroup, false);
-            }
-
-            ChoreGroup operatingChoreGroup = Db.Get().ChoreGroups.Get("MachineOperating");
-            if (RepairIsOperatingChore)
-            {
-                UpdateChoreGroupTypes(operatingChoreGroup, true);
-                repairChoreGroups.Add(operatingChoreGroup);
-            }
-            else
-            {
-                UpdateChoreGroupTypes(operatingChoreGroup, false);
-            }
-
-            Traverse.Create(Db.Get().ChoreTypes.Repair).Property("groups").SetValue(repairChoreGroups.ToArray());
-        }
-
-        private static void InitRepairPrecondition()
-        {
-            Precondition precondition = new Precondition();
-            precondition.id = nameof(IsNotBrokenEnough);
-            precondition.description = STRINGS.CHORES.PRECONDITIONS.IS_NOT_BROKEN_ENOUGH;
-            precondition.fn = (ref Precondition.Context context, object data) =>
-            {
-                BuildingHP buildingHp = data as BuildingHP;
-                return buildingHp == null || buildingHp.HitPoints <= buildingHp.MaxHitPoints * RepairThreshold;
-            };
-            precondition.canExecuteOnAnyThread = true;
-            IsNotBrokenEnough = precondition;
-        }
-
-        private static void UpdateChoreGroupTypes(ChoreGroup choreGroup, bool enableRepair)
-        {
-            if (enableRepair)
-            {
-                if (!choreGroup.choreTypes.Contains(Db.Get().ChoreTypes.Repair))
-                    choreGroup.choreTypes.Add(Db.Get().ChoreTypes.Repair);
-                if (!choreGroup.choreTypes.Contains(Db.Get().ChoreTypes.RepairFetch))
-                    choreGroup.choreTypes.Add(Db.Get().ChoreTypes.RepairFetch);
-            }
-            else
-            {
-                choreGroup.choreTypes.Remove(Db.Get().ChoreTypes.Repair);
-                choreGroup.choreTypes.Remove(Db.Get().ChoreTypes.RepairFetch);
-            }
-        }
-
-        [HarmonyPatch(typeof(Repairable.SMInstance), "HasRequiredMass")]
-        public class RepairableHasRequiredMassPatch
-        {
-            public static void Postfix(ref bool __result)
-            {
-                // skip the materials requirement
-                __result = true;
-            }
-        }
-
-        [HarmonyPatch(typeof(Repairable), "OnPrefabInit")]
-        public class RepairableOnPrefabInitPatch
-        {
-            public static void Postfix(Repairable __instance, ref AttributeConverter ___attributeConverter)
-            {
-                // remove default construction skill modifier
-                ___attributeConverter = null;
-            }
-        }
-
-        [HarmonyPatch(typeof(Repairable), "OnStartWork")]
-        public class RepairableOnStartWorkPatch
-        {
-            public static void Postfix(Repairable __instance, ref float ___expectedRepairTime)
-            {
-                BuildingDef buildingDef = __instance.GetComponent<BuildingComplete>().Def;
-                if (buildingDef == null)
-                    return;
-
-                float repairTimePerHp = buildingDef.ConstructionTime / buildingDef.HitPoints;
-
-                // get repair tick timer from base game so it wouldn't go off too often
-                float defaultExpectedRepairTime = Mathf.Sqrt(__instance.GetComponent<PrimaryElement>().Mass) * 0.1f;
-                // adjust repair time and hp to ticks
-                int hpPerRepairCycle = Mathf.CeilToInt(defaultExpectedRepairTime / repairTimePerHp);
-                ___expectedRepairTime = repairTimePerHp * hpPerRepairCycle;
-                SetRepairAmount(__instance, hpPerRepairCycle);
-            }
-        }
-
-        private static void SetRepairAmount(Repairable repairable, int repairAmount)
-        {
-            if (!repairAmountList.ContainsKey(repairable))
-            {
-                repairAmountList.Add(repairable, repairAmount);
-            }
-            else
-            {
-                repairAmountList[repairable] = repairAmount;
-            }
-        }
-
-        [HarmonyPatch(typeof(Repairable), "OnWorkTick")]
-        public class RepairableOnWorkTickPatch
-        {
-            public static bool Prefix(Repairable __instance, WorkerBase worker, ref float dt,
-                BuildingHP ___hp, float ___expectedRepairTime, ref float ___timeSpentRepairing, ref bool __result)
-            {
-                // setting repair time multipliers
-                float efficiencyMultiplier = 1f;
-                efficiencyMultiplier += Db.Get().Attributes.Construction.Lookup(worker).GetTotalValue() * ConstructionSpeedMultiplier;
-                efficiencyMultiplier += Db.Get().Attributes.Machinery.Lookup(worker).GetTotalValue() * MachinerySpeedMultiplier;
-                efficiencyMultiplier += Db.Get().Attributes.Strength.Lookup(worker).GetTotalValue() * StrengthSpeedMultiplier;
-                dt = dt * efficiencyMultiplier * OverallSpeedMultiplier;
-
-                if (___timeSpentRepairing >= ___expectedRepairTime)
-                {
-                    ___timeSpentRepairing -= ___expectedRepairTime;
-                    ___hp.Repair(repairAmountList[__instance]);
-                    if (___hp.HitPoints >= ___hp.MaxHitPoints)
-                    {
-                        __result = true;
-                        return false;
-                    }
-                }
-                ___timeSpentRepairing += dt;
-                __result = false;
-                return false;
-            }
-        }
-
-        [HarmonyPatch(typeof(Repairable), "OnStopWork")]
-        public class RepairableOnStopWorkPatch
-        {
-            public static void Postfix(Repairable __instance)
-            {
-                UnsetRepairAmount(__instance);
-            }
-        }
-
-        private static void UnsetRepairAmount(Repairable repairable)
-        {
-            if (repairAmountList.ContainsKey(repairable))
-            {
-                repairAmountList.Remove(repairable);
-            }
-        }
-
-        [HarmonyPatch(typeof(Repairable.States), "CreateRepairChore")]
-        public class RepairableCreateRepairChorePatch
-        {
-            public static void Postfix(Repairable.SMInstance smi, Chore __result)
-            {
-                BuildingHP buildingHp = smi.master.GetComponent<BuildingHP>();
-                if (buildingHp == null)
-                    return;
-                __result.AddPrecondition(IsNotBrokenEnough, buildingHp);
+                BetterRepairTools.ConditionThreshold = config.ConditionThreshold / 100f;
+                BetterRepairTools.TimeThreshold = config.TimeThreshold;
+                BetterRepairTools.RestoreTemperature = config.RestoreTemperature;
+                BetterRepairTools.OverallSpeedMultiplier = config.OverallSpeedMultiplier / 100f;
+                BetterRepairTools.ConstructionSpeedMultiplier = config.ConstructionSpeedMultiplier / 100f;
+                BetterRepairTools.MachinerySpeedMultiplier = config.MachinerySpeedMultiplier / 100f;
+                BetterRepairTools.StrengthSpeedMultiplier = config.StrengthSpeedMultiplier / 100f;
+                BetterRepairTools.RepairIsTidyingChore = config.RepairIsTidyingChore;
+                BetterRepairTools.RepairIsBuildingChore = config.RepairIsBuildingChore;
+                BetterRepairTools.RepairIsOperatingChore = config.RepairIsOperatingChore;
+                BetterRepairTools.UpdateChores();
+                BetterRepairTools.InitRepairPrecondition();
             }
         }
 

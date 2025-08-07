@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Title>Better Repair</Title>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Description>Repairs require no materials, but take longer to complete</Description>
     <Copyright>airenelias</Copyright>
     <SupportedBuild>679336</SupportedBuild>

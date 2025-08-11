@@ -15,9 +15,8 @@ namespace RefinedMetalsAreStillMetals
             new PVersionCheck().Register(this, new SteamVersionChecker());
         }
 
-        [HarmonyPatch(typeof(ElementLoader))]
-        [HarmonyPatch("FinaliseElementsTable")]
-        public static class ElementLoaderPatch
+        [HarmonyPatch(typeof(ElementLoader), "FinaliseElementsTable")]
+        public static class ElementLoaderFinaliseElementsTablePatch
         {
             public static void Postfix()
             {
@@ -30,7 +29,10 @@ namespace RefinedMetalsAreStillMetals
 
                 // make enriched uranium usable as refined and ore
                 Element enrichedUranium = ElementLoader.FindElementByHash(SimHashes.EnrichedUranium);
-                enrichedUranium.oreTags = enrichedUranium.oreTags.Append(new[] { GameTags.RefinedMetal, GameTags.Metal });
+                if (enrichedUranium != null)
+                {
+                    enrichedUranium.oreTags = enrichedUranium.oreTags.Append(new[] { GameTags.RefinedMetal, GameTags.Metal });
+                }
             }
         }
     }

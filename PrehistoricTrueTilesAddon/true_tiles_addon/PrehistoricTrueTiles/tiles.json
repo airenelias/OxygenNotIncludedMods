@@ -7,7 +7,8 @@
   },
   "InsulationTile": {
     "Shale": {
-      "MainTex": "insulation_shale_main"
+      "MainTex": "insulation_shale_main",
+      "TopTex": "tile_shale_top"
     }
   },
   "MeshTile": {

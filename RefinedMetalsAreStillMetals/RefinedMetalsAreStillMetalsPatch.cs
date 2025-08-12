@@ -2,12 +2,16 @@
 using KMod;
 using PeterHan.PLib.AVC;
 using PeterHan.PLib.Core;
-using System;
+using System.Linq;
 
 namespace RefinedMetalsAreStillMetals
 {
     public class RefinedMetalsAreStillMetalsPatch : UserMod2
     {
+        private static readonly SimHashes[] forcedElementsList = [
+            SimHashes.EnrichedUranium
+        ];
+
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
@@ -20,18 +24,23 @@ namespace RefinedMetalsAreStillMetals
         {
             public static void Postfix()
             {
-                // make all refined metals usable as ore
-                foreach (Element element in ElementLoader.elements.FindAll((Predicate<Element>)
-                    (e => e.IsSolid && e.HasTag(GameTags.RefinedMetal) && !e.HasTag(GameTags.Metal))))
+                foreach (Element e in ElementLoader.elements)
                 {
-                    element.oreTags = element.oreTags.Append(GameTags.Metal);
-                }
+                    // make all listed elements usable as refined metals and ore
+                    if (forcedElementsList.Contains(e.id))
+                    {
+                        if (!e.HasTag(GameTags.RefinedMetal))
+                            e.oreTags = e.oreTags.Append(GameTags.RefinedMetal);
+                        if (!e.HasTag(GameTags.Metal))
+                            e.oreTags = e.oreTags.Append(GameTags.Metal);
+                        continue;
+                    }
 
-                // make enriched uranium usable as refined and ore
-                Element enrichedUranium = ElementLoader.FindElementByHash(SimHashes.EnrichedUranium);
-                if (enrichedUranium != null)
-                {
-                    enrichedUranium.oreTags = enrichedUranium.oreTags.Append(new[] { GameTags.RefinedMetal, GameTags.Metal });
+                    // make all refined metals usable as ore
+                    if (e.IsSolid && e.HasTag(GameTags.RefinedMetal) && !e.HasTag(GameTags.Metal))
+                    {
+                        e.oreTags = e.oreTags.Append(GameTags.Metal);
+                    }
                 }
             }
         }

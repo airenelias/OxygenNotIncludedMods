@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Title>Refined Metals Are Still Metals</Title>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
     <Description>Refined Metals are usable as Raw Metals</Description>
     <Copyright>airenelias</Copyright>
     <SupportedBuild>679336</SupportedBuild>
@@ -52,8 +52,14 @@
     <Copy SourceFiles="preview.png" DestinationFiles="$(InstallFolder)\preview.png" />
   </Target>
   <Target Name="WriteYamls" AfterTargets="CopyArtifactsToInstallFolder">
-    <WriteLinesToFile File="$(InstallFolder)\mod.yaml" Overwrite="true" Lines="&#xD;&#xA;                      title: &quot;$(Title)&quot;;&#xD;&#xA;                      description: &quot;$(Description)&quot;;&#xD;&#xA;                      staticID: $(StaticID)" />
-    <WriteLinesToFile File="$(InstallFolder)\mod_info.yaml" Overwrite="true" Lines="&#xD;&#xA;                      minimumSupportedBuild: $(SupportedBuild);&#xD;&#xA;                      version: $(Version);&#xD;&#xA;                      APIVersion: 2" />
+    <WriteLinesToFile File="$(InstallFolder)\mod.yaml" Overwrite="true" Lines="
+                      title: &quot;$(Title)&quot;;
+                      description: &quot;$(Description)&quot;;
+                      staticID: $(StaticID)" />
+    <WriteLinesToFile File="$(InstallFolder)\mod_info.yaml" Overwrite="true" Lines="
+                      minimumSupportedBuild: $(SupportedBuild);
+                      version: $(Version);
+                      APIVersion: 2" />
   </Target>
   <Target Name="CompleteCleanup" AfterTargets="Clean">
     <RemoveDir Directories="$(WorkingDirectory)\translations" />

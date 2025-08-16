@@ -22,13 +22,13 @@ namespace SkilledEnough
             {
                 CurrentlySelectedMinionResume.AddTag(SkilledEnough);
                 UpdateTooltip();
-                ColorizeMasteryPoints(CurrentlySelectedMinionResume.GetIdentity.nameStringKey, false);
+                ColorizeMasteryPoints(CurrentlySelectedMinionResume.GetComponent<KPrefabID>()?.InstanceID, false);
             }
             else
             {
                 CurrentlySelectedMinionResume.RemoveTag(SkilledEnough);
                 UpdateTooltip();
-                ColorizeMasteryPoints(CurrentlySelectedMinionResume.GetIdentity.nameStringKey, true);
+                ColorizeMasteryPoints(CurrentlySelectedMinionResume.GetComponent<KPrefabID>()?.InstanceID, true);
             }
             ColorizeLevel();
             UpdateSkillPointAvailableStatusItem();
@@ -80,12 +80,12 @@ namespace SkilledEnough
             ColorizeMasteryPoints(__instance, null, false);
         }
 
-        public static void ColorizeMasteryPoints(string nameStringKey, bool colorize)
+        public static void ColorizeMasteryPoints(int? prefabId, bool colorize)
         {
-            ColorizeMasteryPoints(null, nameStringKey, colorize);
+            ColorizeMasteryPoints(null, prefabId, colorize);
         }
 
-        public static void ColorizeMasteryPoints(SkillsScreen __instance, string nameStringKey, bool colorize)
+        public static void ColorizeMasteryPoints(SkillsScreen __instance, int? instanceId, bool colorize)
         {
             if (__instance == null)
             {
@@ -107,13 +107,20 @@ namespace SkilledEnough
                 if (minionIdentity == null)
                     continue;
 
-                // if looking for a duplicant but name doesn't match, skip
-                if (nameStringKey != null && !minionIdentity.nameStringKey.Equals(nameStringKey))
-                    continue;
+                // if looking for a specific duplicant
+                if (instanceId != null)
+                {
+                    KPrefabID prefab = minionIdentity.GetComponent<KPrefabID>();
+                    if (prefab == null)
+                        continue;
+                    // skipping not matching ids
+                    if (prefab.InstanceID != instanceId)
+                        continue;
+                }
 
                 Transform label = child.gameObject.transform.Find("MasteryPoints/Label");
                 LocText locText = label.GetComponent<LocText>();
-                if (nameStringKey != null)
+                if (instanceId != null)
                 {
                     // if looking for a duplicant, then might need to return greens
                     if (colorize)

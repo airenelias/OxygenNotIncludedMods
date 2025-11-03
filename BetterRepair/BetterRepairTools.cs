@@ -4,6 +4,12 @@ using static Chore;
 
 namespace BetterRepair
 {
+    internal class PreconditionData(BuildingHP buildingHP, BuildingRepairTracker tracker)
+    {
+        public readonly BuildingHP buildingHP = buildingHP;
+        public readonly BuildingRepairTracker tracker = tracker;
+    }
+
     internal class BetterRepairTools
     {
         public static float ConditionThreshold;
@@ -82,19 +88,15 @@ namespace BetterRepair
             precondition.description = STRINGS.CHORES.PRECONDITIONS.ABOVE_THRESHOLD;
             precondition.fn = (ref Precondition.Context context, object data) =>
             {
-                BuildingHP buildingHp = data as BuildingHP;
-                if (buildingHp == null)
-                    return true;
-                BuildingRepairTracker tracker = buildingHp.gameObject.AddOrGet<BuildingRepairTracker>();
-                if (tracker == null)
-                    return true;
+                BuildingHP buildingHp = (data as PreconditionData).buildingHP;
+                BuildingRepairTracker tracker = (data as PreconditionData).tracker;
 
                 bool conditionThresholdPass = buildingHp.HitPoints < buildingHp.MaxHitPoints * ConditionThreshold;
                 bool timeThresholdPass = GameClock.Instance.GetTime() > tracker.GetDamageTimeThreshold();
                 return conditionThresholdPass || // allow repair if condition below threshold level
                 (timeThresholdPass && !conditionThresholdPass); // complete repair if didn't take damage for threshold time
             };
-            precondition.canExecuteOnAnyThread = false;
+            precondition.canExecuteOnAnyThread = true;
             AboveThreshold = precondition;
         }
     }

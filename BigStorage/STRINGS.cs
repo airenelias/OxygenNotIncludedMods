@@ -45,6 +45,12 @@ namespace BigStorage
                     public static LocString DESC = "Ten times the space at twenty times the pressure!";
                     public static LocString EFFECT = "Stores a greater amount of the " + FormatAsLink("Gas", "ELEMENTS_GAS") + " resources piped into it.";
                 }
+                public static class BIGGASRESERVOIR
+                {
+                    public static LocString NAME = FormatAsLink("Big Gas Reservoir", "BIGGASRESERVOIR");
+                    public static LocString DESC = "Ten times the space at twenty times the pressure!";
+                    public static LocString EFFECT = "Stores a greater amount of the " + FormatAsLink("Gas", "ELEMENTS_GAS") + " resources piped into it.";
+                }
 
                 public static class BIGSTORAGETILE
                 {

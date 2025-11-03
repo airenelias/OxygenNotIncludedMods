@@ -1,192 +1,61 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">  
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A0525AF6-ADFE-4A92-A2DC-4897298490D3}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BigStorage</RootNamespace>
-    <AssemblyName>BigStorage</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
+    <Title>Big Storage</Title>
+    <Version>8.0.0</Version>
+    <Description>Bigger storage bins, liquid and gas reservoirs at higer capacity and higher cost</Description>
+    <Copyright>airenelias</Copyright>
+    <SupportedBuild>679336</SupportedBuild>
+    <StaticID>BigStorageRestoraged</StaticID>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+  
+  <PropertyGroup>
+    <FileVersion>$(Version)</FileVersion>
+    <TargetFramework>net471</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.43" />
+    <PackageReference Include="PLib" Version="4.17.1" />
+  </ItemGroup>
+  
   <PropertyGroup>
     <GameFolder>D:\Steam\steamapps\common\OxygenNotIncluded</GameFolder>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony" HintPath="$(GameFolder)\OxygenNotIncluded_Data\Managed\0Harmony.dll" />
+    <Reference Include="Newtonsoft.Json" HintPath="$(GameFolder)\OxygenNotIncluded_Data\Managed\Newtonsoft.Json.dll" />
     <Reference Include="Assembly-CSharp" HintPath="$(GameFolder)\OxygenNotIncluded_Data\Managed\Assembly-CSharp.dll" />
     <Reference Include="Assembly-CSharp-firstpass" HintPath="$(GameFolder)\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll" />
-    <Reference Include="UnityEngine" HintPath="$(GameFolder)\OxygenNotIncluded_Data\Managed\UnityEngine.dll" />
     <Reference Include="UnityEngine.CoreModule" HintPath="$(GameFolder)\OxygenNotIncluded_Data\Managed\UnityEngine.CoreModule.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BigBeautifulStorageLockerConfig.cs" />
-    <Compile Include="BigRefrigeratorConfig.cs" />
-    <Compile Include="BigSmartStorageLockerConfig.cs" />
-    <Compile Include="BigStorageTileConfig.cs" />
-    <Compile Include="BigStorageLockerConfig.cs" />
-    <Compile Include="BigLiquidStorageConfig.cs" />
-    <Compile Include="BigGasStorageConfig.cs" />
-    <Compile Include="BigStoragePatch.cs" />
-    <Compile Include="BigStorageConfig.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="STRINGS.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="anim\assets\bigbeautifulstoragelocker\bigbeautifulstoragelocker_anim.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\assets\bigbeautifulstoragelocker\bigbeautifulstoragelocker_build.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\assets\biggasstorage\biggasstorage_anim.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\assets\biggasstorage\biggasstorage_build.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\assets\bigliquidstorage\bigliquidstorage_anim.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\assets\bigliquidstorage\bigliquidstorage_build.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\assets\bigsmartstoragelocker\bigsmartstoragelocker_anim.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\assets\bigsmartstoragelocker\bigsmartstoragelocker_build.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\assets\bigstoragelocker\bigstoragelocker_anim.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\assets\bigstoragelocker\bigstoragelocker_build.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\assets\bigstoragetile\bigstoragetile_anim.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\assets\bigstoragetile\bigstoragetile_build.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\assets\bigfridge\bigfridge_anim.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\assets\bigfridge\bigfridge_build.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="translations\bigstorage_template.pot" />
-    <None Include="translations\zh.po">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mod.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mod_info.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="anim\assets\bigbeautifulstoragelocker\bigbeautifulstoragelocker_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="anim\assets\biggasstorage\biggasstorage_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="anim\assets\bigliquidstorage\bigliquidstorage_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="anim\assets\bigsmartstoragelocker\bigsmartstoragelocker_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="anim\assets\bigstoragelocker\bigstoragelocker_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="anim\assets\bigstoragetile\bigstoragetile_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="anim\assets\bigfridge\bigfridge_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="preview.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="ILRepack">
-      <Version>2.0.35</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="ILRepack.MSBuild.Task">
-      <Version>2.0.13</Version>
-    </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="PLib">
-      <Version>4.17.0</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  
   <PropertyGroup>
-    <WorkingDirectory>$(MSBuildThisFileDirectory)bin\$(Configuration)\$(TargetFramework)</WorkingDirectory>
-    <InstallFolder>$(WorkingDirectory)\$(ProjectName)</InstallFolder>
+    <InstallFolder>$(USERPROFILE)\Documents\Klei\OxygenNotIncluded\mods\dev\$(MSBuildProjectName)</InstallFolder>
   </PropertyGroup>
-  <Target Name="ILRepack" AfterTargets="Build">
+  <Target Name="CopyAssembliesToInstallFolder" AfterTargets="MergeAssemblies">
     <ItemGroup>
-      <InputAssemblies Include="$(WorkingDirectory)\PLib.dll" />
+      <AnimationFiles Include="$(MSBuildProjectDirectory)\anim\assets\*\*.png" />
+      <AnimationFiles Include="$(MSBuildProjectDirectory)\anim\assets\*\*.bytes" />
+      <LocalizationFiles Include="$(MSBuildProjectDirectory)\translations\*.po" />
     </ItemGroup>
-    <ILRepack TargetPlatformVersion="v4" OutputType="SameAsPrimaryAssembly" MainAssembly="$(TargetPath)" OutputAssembly="$(TargetPath)" InputAssemblies="@(InputAssemblies)" XmlDocumentation="true" Internalize="true" WilcardInputAssemblies="true" WorkingDirectory="$(GameFolder)\OxygenNotIncluded_Data\Managed" />
-  </Target>
-  <Target Name="CopyArtifactsToInstallFolder" AfterTargets="ILRepack">
-    <ItemGroup>
-      <AnimationFiles Include="$(WorkingDirectory)\anim\**\*.*" />
-      <LocalizationFiles Include="$(WorkingDirectory)\translations\*.po" />
-      <YamlFiles Include="$(ProjectDir)\*.yaml" />
-    </ItemGroup>
-    <Copy SourceFiles="@(AnimationFiles)" DestinationFiles="@(AnimationFiles->'$(InstallFolder)\anim\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(AnimationFiles)" DestinationFiles="@(AnimationFiles->'$(InstallFolder)\anim\assets\%(RecursiveDir)\%(Filename)%(Extension)')" />
     <Copy SourceFiles="@(LocalizationFiles)" DestinationFiles="@(LocalizationFiles->'$(InstallFolder)\translations\%(Filename).po')" />
-    <Copy SourceFiles="@(YamlFiles)" DestinationFolder="$(InstallFolder)" />
     <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(InstallFolder)\$(TargetFileName)" />
     <Copy SourceFiles="preview.png" DestinationFiles="$(InstallFolder)\preview.png" />
   </Target>
+  <Target Name="WriteYamls" AfterTargets="CopyAssembliesToInstallFolder">
+    <WriteLinesToFile File="$(InstallFolder)\mod.yaml" Overwrite="true" Lines="
+                      title: &quot;$(Title)&quot;;
+                      description: &quot;$(Description)&quot;;
+                      staticID: $(StaticID)" />
+    <WriteLinesToFile File="$(InstallFolder)\mod_info.yaml" Overwrite="true" Lines="
+                      minimumSupportedBuild: $(SupportedBuild);
+                      version: $(Version);
+                      APIVersion: 2" />
+  </Target>
   <Target Name="CompleteCleanup" AfterTargets="Clean">
-    <RemoveDir Directories="$(WorkingDirectory)\anim" />
-    <RemoveDir Directories="$(WorkingDirectory)\translations" />
     <RemoveDir Directories="$(InstallFolder)" />
   </Target>
 </Project>

@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Title>Better Repair</Title>
-    <Version>1.2.2</Version>
-    <Description>Repairs require no materials, but take longer to complete</Description>
+    <Title>Geotune Activity</Title>
+    <Version>1.0.0</Version>
+    <Description>Geotuner speeds up geyser activity and dormancy cycles</Description>
     <Copyright>airenelias</Copyright>
-    <SupportedBuild>679336</SupportedBuild>
-    <StaticID>airenelias.BetterRepair</StaticID>
+    <SupportedBuild>676963</SupportedBuild>
+    <StaticID>airenelias.GeotuneActivity</StaticID>
   </PropertyGroup>
 
   <PropertyGroup>

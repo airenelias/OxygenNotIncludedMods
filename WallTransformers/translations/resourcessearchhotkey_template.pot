@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Application: Oxygen Not Included"
+"POT Version: 2.0"
+
+#. ResourcesSearchHotkey.STRINGS.UI.CATEGORY.DIAGNOSTICS.TITLE
+msgctxt "ResourcesSearchHotkey.STRINGS.UI.CATEGORY.DIAGNOSTICS.TITLE"
+msgid "Diagnostics screen"
+msgstr ""
+
+#. ResourcesSearchHotkey.STRINGS.UI.CATEGORY.RESOURCES.TITLE
+msgctxt "ResourcesSearchHotkey.STRINGS.UI.CATEGORY.RESOURCES.TITLE"
+msgid "Resources screen"
+msgstr ""
+
+#. ResourcesSearchHotkey.STRINGS.UI.FOCUS.TITLE
+msgctxt "ResourcesSearchHotkey.STRINGS.UI.FOCUS.TITLE"
+msgid "Auto-Focus search"
+msgstr ""
+
+#. ResourcesSearchHotkey.STRINGS.UI.FOCUS.TOOLTIP
+msgctxt "ResourcesSearchHotkey.STRINGS.UI.FOCUS.TOOLTIP"
+msgid "Search is ready to type when screen opens"
+msgstr ""
+
+#. ResourcesSearchHotkey.STRINGS.UI.HOTKEY.DIAGNOSTICS.TITLE
+msgctxt "ResourcesSearchHotkey.STRINGS.UI.HOTKEY.DIAGNOSTICS.TITLE"
+msgid "Manage Diagnostics"
+msgstr ""
+
+#. ResourcesSearchHotkey.STRINGS.UI.HOTKEY.RESOURCES.TITLE
+msgctxt "ResourcesSearchHotkey.STRINGS.UI.HOTKEY.RESOURCES.TITLE"
+msgid "Manage Resources"
+msgstr ""
+
+#. ResourcesSearchHotkey.STRINGS.UI.REMEMBER.TITLE
+msgctxt "ResourcesSearchHotkey.STRINGS.UI.REMEMBER.TITLE"
+msgid "Remember search"
+msgstr ""
+
+#. ResourcesSearchHotkey.STRINGS.UI.REMEMBER.TOOLTIP
+msgctxt "ResourcesSearchHotkey.STRINGS.UI.REMEMBER.TOOLTIP"
+msgid "Last search is saved for next time"
+msgstr ""
+

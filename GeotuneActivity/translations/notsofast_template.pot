@@ -1,0 +1,25 @@
+msgid ""
+msgstr ""
+"Application: Oxygen Not Included"
+"POT Version: 2.0"
+
+#. NotSoFast.STRINGS.UI.ANIMATION.OVERSPEED.TITLE
+msgctxt "NotSoFast.STRINGS.UI.ANIMATION.OVERSPEED.TITLE"
+msgid "Athletic dupe animation speed (%)"
+msgstr ""
+
+#. NotSoFast.STRINGS.UI.ANIMATION.OVERSPEED.TOOLTIP
+msgctxt "NotSoFast.STRINGS.UI.ANIMATION.OVERSPEED.TOOLTIP"
+msgid "Determines how quickly dupes will move their legs if they exceed 100% speed"
+msgstr ""
+
+#. NotSoFast.STRINGS.UI.ANIMATION.SPEED.TITLE
+msgctxt "NotSoFast.STRINGS.UI.ANIMATION.SPEED.TITLE"
+msgid "Animation speed (%)"
+msgstr ""
+
+#. NotSoFast.STRINGS.UI.ANIMATION.SPEED.TOOLTIP
+msgctxt "NotSoFast.STRINGS.UI.ANIMATION.SPEED.TOOLTIP"
+msgid "Determines how quickly dupes will move their legs overall"
+msgstr ""
+

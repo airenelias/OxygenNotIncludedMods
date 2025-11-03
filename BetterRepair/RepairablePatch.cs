@@ -16,13 +16,13 @@ namespace BetterRepair
             }
         }
 
-        [HarmonyPatch(typeof(Repairable.SMInstance), "HasRequiredMass")]
-        public class RepairableHasRequiredMassPatch
+        [HarmonyPatch(typeof(Repairable.States), "InitializeStates")]
+        public class RepairableInitializeStatesPatch
         {
-            public static void Postfix(ref bool __result)
+            public static void Postfix(Repairable.States __instance)
             {
                 // skip the materials requirement
-                __result = true;
+                __instance.allowed.DefaultState(__instance.allowed.repairable);
             }
         }
 
@@ -34,7 +34,8 @@ namespace BetterRepair
                 BuildingHP buildingHp = smi.master.GetComponent<BuildingHP>();
                 if (buildingHp == null)
                     return;
-                __result.AddPrecondition(BetterRepairTools.AboveThreshold, buildingHp);
+                __result.AddPrecondition(BetterRepairTools.AboveThreshold,
+                    new PreconditionData(buildingHp, buildingHp.gameObject.AddOrGet<BuildingRepairTracker>()));
             }
         }
 

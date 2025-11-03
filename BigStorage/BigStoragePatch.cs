@@ -1,11 +1,11 @@
-﻿using HarmonyLib;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using HarmonyLib;
 using KMod;
 using PeterHan.PLib.AVC;
 using PeterHan.PLib.Core;
 using PeterHan.PLib.Options;
-using System;
-using System.IO;
-using System.Reflection;
 
 namespace BigStorage
 {
@@ -35,7 +35,9 @@ namespace BigStorage
                 ModUtil.AddBuildingToPlanScreen("Base", BigBeautifulStorageLockerConfig.ID);
                 ModUtil.AddBuildingToPlanScreen("Base", BigSmartStorageLockerConfig.ID);
                 ModUtil.AddBuildingToPlanScreen("Base", BigLiquidStorageConfig.ID);
+                ModUtil.AddBuildingToPlanScreen("Base", BigLiquidReservoirConfig.ID);
                 ModUtil.AddBuildingToPlanScreen("Base", BigGasStorageConfig.ID);
+                ModUtil.AddBuildingToPlanScreen("Base", BigGasReservoirConfig.ID);
                 ModUtil.AddBuildingToPlanScreen("Base", BigStorageTileConfig.ID);
                 if (SingletonOptions<BigStorageConfig>.Instance.BigRefrigeratorEnabled)
                     ModUtil.AddBuildingToPlanScreen("Food", BigRefrigeratorConfig.ID);
@@ -51,14 +53,24 @@ namespace BigStorage
                     Db.Get().Techs.Get("SolidTransport").unlockedItemIDs.Add(BigSmartStorageLockerConfig.ID);
                     Db.Get().Techs.Get("LiquidTemperature").unlockedItemIDs.Add(BigLiquidStorageConfig.ID);
                     Db.Get().Techs.Get("Catalytics").unlockedItemIDs.Add(BigGasStorageConfig.ID);
+                    Db.Get().Techs.Get("Catalytics").unlockedItemIDs.Add(BigGasReservoirConfig.ID);
                     Db.Get().Techs.Get("SolidManagement").unlockedItemIDs.Add(BigStorageTileConfig.ID);
                     if (SingletonOptions<BigStorageConfig>.Instance.BigRefrigeratorEnabled)
                         Db.Get().Techs.Get("FoodRepurposing").unlockedItemIDs.Add(BigRefrigeratorConfig.ID);
                 }
             }
 
+            [HarmonyPatch(typeof(Mod), "Load")]
+            public class ActiveControllerInitializeStatesPatch
+            {
+                public static void Postfix(Mod __instance)
+                {
+                    Debug.Log("[BigStorage] mod loaded " + __instance.staticID);
+                }
+            }
+
             [HarmonyPatch(typeof(Localization), "Initialize")]
-            public class Localization_Initialize_Patch
+            public class LocalizationInitializePatch
             {
                 public static void Postfix() => Translate(typeof(STRINGS));
 
@@ -67,7 +79,8 @@ namespace BigStorage
                     // Basic intended way to register strings, keeps namespace
                     Localization.RegisterForTranslation(root);
                     // Creates template for users to edit
-                    Localization.GenerateStringsTemplate(root, Path.Combine(Manager.GetDirectory(), "strings_templates"));
+                    Localization.GenerateStringsTemplate(root,
+                        Path.Combine(Manager.GetDirectory(), "strings_templates"));
                     // Load user created translation files
                     LoadStrings();
                     // Register strings without namespace
@@ -77,7 +90,8 @@ namespace BigStorage
 
                 private static void LoadStrings()
                 {
-                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "translations", Localization.GetLocale()?.Code + ".po");
+                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                        "translations", Localization.GetLocale()?.Code + ".po");
                     if (File.Exists(path))
                         Localization.OverloadStrings(Localization.LoadStringsFile(path, false));
                 }

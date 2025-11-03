@@ -94,7 +94,7 @@ namespace BetterRepair
                 return conditionThresholdPass || // allow repair if condition below threshold level
                 (timeThresholdPass && !conditionThresholdPass); // complete repair if didn't take damage for threshold time
             };
-            precondition.canExecuteOnAnyThread = true;
+            precondition.canExecuteOnAnyThread = false;
             AboveThreshold = precondition;
         }
     }

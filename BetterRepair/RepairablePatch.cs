@@ -67,9 +67,12 @@ namespace BetterRepair
             {
                 // setting repair time multipliers
                 float efficiencyMultiplier = 1f;
-                efficiencyMultiplier += Db.Get().Attributes.Construction.Lookup(worker).GetTotalValue() * BetterRepairTools.ConstructionSpeedMultiplier;
-                efficiencyMultiplier += Db.Get().Attributes.Machinery.Lookup(worker).GetTotalValue() * BetterRepairTools.MachinerySpeedMultiplier;
-                efficiencyMultiplier += Db.Get().Attributes.Strength.Lookup(worker).GetTotalValue() * BetterRepairTools.StrengthSpeedMultiplier;
+                if (worker != null)
+                {
+                    efficiencyMultiplier += Db.Get().Attributes.Construction.Lookup(worker).GetTotalValue() * BetterRepairTools.ConstructionSpeedMultiplier;
+                    efficiencyMultiplier += Db.Get().Attributes.Machinery.Lookup(worker).GetTotalValue() * BetterRepairTools.MachinerySpeedMultiplier;
+                    efficiencyMultiplier += Db.Get().Attributes.Strength.Lookup(worker).GetTotalValue() * BetterRepairTools.StrengthSpeedMultiplier;
+                }
                 dt = dt * efficiencyMultiplier * BetterRepairTools.OverallSpeedMultiplier;
 
                 if (___timeSpentRepairing >= ___expectedRepairTime)

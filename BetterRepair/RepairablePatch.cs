@@ -70,9 +70,17 @@ namespace BetterRepair
                 float efficiencyMultiplier = 1f;
                 if (worker != null)
                 {
-                    efficiencyMultiplier += Db.Get().Attributes.Construction.Lookup(worker).GetTotalValue() * BetterRepairTools.ConstructionSpeedMultiplier;
-                    efficiencyMultiplier += Db.Get().Attributes.Machinery.Lookup(worker).GetTotalValue() * BetterRepairTools.MachinerySpeedMultiplier;
-                    efficiencyMultiplier += Db.Get().Attributes.Strength.Lookup(worker).GetTotalValue() * BetterRepairTools.StrengthSpeedMultiplier;
+                    AttributeInstance constructionAttribute = Db.Get().Attributes.Construction.Lookup(worker);
+                    if (constructionAttribute != null)
+                        efficiencyMultiplier += constructionAttribute.GetTotalValue() * BetterRepairTools.ConstructionSpeedMultiplier;
+
+                    AttributeInstance machineryAttribute = Db.Get().Attributes.Machinery.Lookup(worker);
+                    if (machineryAttribute != null)
+                        efficiencyMultiplier += machineryAttribute.GetTotalValue() * BetterRepairTools.MachinerySpeedMultiplier;
+
+                    AttributeInstance strengthAttribute = Db.Get().Attributes.Strength.Lookup(worker);
+                    if (strengthAttribute != null)
+                        efficiencyMultiplier += strengthAttribute.GetTotalValue() * BetterRepairTools.StrengthSpeedMultiplier;
                 }
                 dt = dt * efficiencyMultiplier * BetterRepairTools.OverallSpeedMultiplier;
 

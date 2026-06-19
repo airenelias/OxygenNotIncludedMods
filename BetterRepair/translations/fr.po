@@ -1,0 +1,130 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Pholith\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Application: Oxygen Not IncludedPOT Version: 2.0\n"
+"X-Generator: Poedit 3.9\n"
+
+#. BetterRepair.STRINGS.CHORES.PRECONDITIONS.ABOVE_THRESHOLD
+msgctxt "BetterRepair.STRINGS.CHORES.PRECONDITIONS.ABOVE_THRESHOLD"
+msgid "Above repair threshold"
+msgstr "Au-dessus du seuil de réparation"
+
+#. BetterRepair.STRINGS.UI.CHORE.BUILDING.TITLE
+msgctxt "BetterRepair.STRINGS.UI.CHORE.BUILDING.TITLE"
+msgid "Building"
+msgstr "Construction"
+
+#. BetterRepair.STRINGS.UI.CHORE.BUILDING.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.CHORE.BUILDING.TOOLTIP"
+msgid "Duplicants with set Building errand can do Repair"
+msgstr "Les duplicants autorisés aux tâches de construction peuvent effectuer les réparations"
+
+#. BetterRepair.STRINGS.UI.CHORE.OPERATING.TITLE
+msgctxt "BetterRepair.STRINGS.UI.CHORE.OPERATING.TITLE"
+msgid "Operating"
+msgstr "Opérer"
+
+#. BetterRepair.STRINGS.UI.CHORE.OPERATING.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.CHORE.OPERATING.TOOLTIP"
+msgid "Duplicants with set Operating errand can do Repair"
+msgstr "Les duplicants autorisés aux tâches de machineries peuvent effectuer les réparations"
+
+#. BetterRepair.STRINGS.UI.CHORE.TIDYING.TITLE
+msgctxt "BetterRepair.STRINGS.UI.CHORE.TIDYING.TITLE"
+msgid "Tidying"
+msgstr "Rangement"
+
+#. BetterRepair.STRINGS.UI.CHORE.TIDYING.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.CHORE.TIDYING.TOOLTIP"
+msgid "Duplicants with set Tidying errand can do Repair"
+msgstr "Les duplicants autorisés aux tâches de rangement peuvent effectuer les réparations"
+
+#. BetterRepair.STRINGS.UI.CHORE.TITLE
+msgctxt "BetterRepair.STRINGS.UI.CHORE.TITLE"
+msgid "Repair Errand Type"
+msgstr "Type de tâche de réparation"
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.CONSTRUCTION.TITLE
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.CONSTRUCTION.TITLE"
+msgid "Construction Repair speed bonus (%)"
+msgstr "Bonus de vitesse de réparation lié à la construction (%)"
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.CONSTRUCTION.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.CONSTRUCTION.TOOLTIP"
+msgid "Construction (Building) impact on Repair effectiveness"
+msgstr "Influence de la compétence Construction sur l'efficacité des réparations"
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.MACHINERY.TITLE
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.MACHINERY.TITLE"
+msgid "Machinery Repair speed bonus (%)"
+msgstr "Bonus de vitesse de réparation lié aux machines (%)"
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.MACHINERY.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.MACHINERY.TOOLTIP"
+msgid "Machinery (Operating) impact on Repair effectiveness"
+msgstr "Influence de la compétence Machinerie sur l'efficacité des réparations"
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.OVERALL.TITLE
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.OVERALL.TITLE"
+msgid "Overall Repair speed (%)"
+msgstr "Vitesse globale de réparation (%)"
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.OVERALL.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.OVERALL.TOOLTIP"
+msgid "How quickly Repair will be finished"
+msgstr "Détermine la rapidité d'exécution des réparations"
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.STRENGTH.TITLE
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.STRENGTH.TITLE"
+msgid "Strength Repair speed bonus (%)"
+msgstr "Bonus de vitesse de réparation lié à la force (%)"
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.STRENGTH.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.STRENGTH.TOOLTIP"
+msgid "Strength impact on Repair effectiveness"
+msgstr "Influence de la force sur l'efficacité des réparations"
+
+#. BetterRepair.STRINGS.UI.MULTIPLIER.TITLE
+msgctxt "BetterRepair.STRINGS.UI.MULTIPLIER.TITLE"
+msgid "Repair Speed"
+msgstr "Vitesse de réparation"
+
+#. BetterRepair.STRINGS.UI.RESTORE_TEMPERATURE.TITLE
+msgctxt "BetterRepair.STRINGS.UI.RESTORE_TEMPERATURE.TITLE"
+msgid "Repair calms temperature"
+msgstr "La réparation stabilise la température"
+
+#. BetterRepair.STRINGS.UI.RESTORE_TEMPERATURE.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.RESTORE_TEMPERATURE.TOOLTIP"
+msgid "Repair gradually restores buildings default temperature"
+msgstr "La réparation restaure progressivement la température par défaut du bâtiment"
+
+#. BetterRepair.STRINGS.UI.THRESHOLD.CONDITION.TITLE
+msgctxt "BetterRepair.STRINGS.UI.THRESHOLD.CONDITION.TITLE"
+msgid "Repair threshold (%)"
+msgstr "Seuil de réparation (%)"
+
+#. BetterRepair.STRINGS.UI.THRESHOLD.CONDITION.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.THRESHOLD.CONDITION.TOOLTIP"
+msgid "Repair errand becomes doable only if building condition drops to this level"
+msgstr ""
+"La tâche de réparation devient disponible uniquement lorsque l'état du bâtiment descend sous ce seuil"
+
+#. BetterRepair.STRINGS.UI.THRESHOLD.TIME.TITLE
+msgctxt "BetterRepair.STRINGS.UI.THRESHOLD.TIME.TITLE"
+msgid "Complete Repair threshold (cycles)"
+msgstr "Seuil de réparation complète (cycles)"
+
+#. BetterRepair.STRINGS.UI.THRESHOLD.TIME.TOOLTIP
+msgctxt "BetterRepair.STRINGS.UI.THRESHOLD.TIME.TOOLTIP"
+msgid "Full building repair will be erranded only if it didn't recieve any damage for this amount of cycles"
+msgstr ""
+"La réparation complète du bâtiment ne sera lancée que s'il n'a subi aucun dégât pendant ce nombre de cycles"

@@ -4,6 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
+namespace BigStorage;
+
 public class BigLiquidStorageConfig : IBuildingConfig
 {
     public const string ID = "BigLiquidStorage";
@@ -34,9 +36,9 @@ public class BigLiquidStorageConfig : IBuildingConfig
             LogicPorts.Port.OutputPort(
                 SmartReservoir.PORT_ID,
                 new CellOffset(0, 0),
-                STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT,
-                STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT_ACTIVE,
-                STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT_INACTIVE)
+                global::STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT,
+                global::STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT_ACTIVE,
+                global::STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT_INACTIVE)
         };
         GeneratedBuildings.RegisterWithOverlay(OverlayScreen.LiquidVentIDs, ID);
         buildingDef.AddSearchTerms(SEARCH_TERMS.STORAGE);

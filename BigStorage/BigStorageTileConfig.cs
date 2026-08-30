@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
+namespace BigStorage;
+
 public class BigStorageTileConfig : IBuildingConfig
 {
     public const string ID = "BigStorageTile";

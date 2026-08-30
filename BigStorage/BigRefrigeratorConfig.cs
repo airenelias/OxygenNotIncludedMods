@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
+namespace BigStorage;
+
 public class BigRefrigeratorConfig : IBuildingConfig
 {
     public const string ID = "BigRefrigerator";
@@ -32,9 +34,9 @@ public class BigRefrigeratorConfig : IBuildingConfig
             LogicPorts.Port.OutputPort(
                 FilteredStorage.FULL_PORT_ID,
                 new CellOffset(0, 1),
-                STRINGS.BUILDINGS.PREFABS.REFRIGERATOR.LOGIC_PORT,
-                STRINGS.BUILDINGS.PREFABS.REFRIGERATOR.LOGIC_PORT_ACTIVE,
-                STRINGS.BUILDINGS.PREFABS.REFRIGERATOR.LOGIC_PORT_INACTIVE)
+                global::STRINGS.BUILDINGS.PREFABS.REFRIGERATOR.LOGIC_PORT,
+                global::STRINGS.BUILDINGS.PREFABS.REFRIGERATOR.LOGIC_PORT_ACTIVE,
+                global::STRINGS.BUILDINGS.PREFABS.REFRIGERATOR.LOGIC_PORT_INACTIVE)
         };
         buildingDef.Floodable = false;
         buildingDef.ViewMode = OverlayModes.Power.ID;
@@ -47,8 +49,7 @@ public class BigRefrigeratorConfig : IBuildingConfig
 
     public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
     {
-        go.GetComponent<KPrefabID>();
-        go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.Refrigerator);
+        go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.KitchenRefrigerator);
     }
 
     public override void DoPostConfigureComplete(GameObject go)

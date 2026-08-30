@@ -4,6 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
+namespace BigStorage;
+
 public class BigGasStorageConfig : IBuildingConfig
 {
     public const string ID = "BigGasStorage";
@@ -40,9 +42,9 @@ public class BigGasStorageConfig : IBuildingConfig
             LogicPorts.Port.OutputPort(
                 SmartReservoir.PORT_ID,
                 new CellOffset(0, 0),
-                STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT,
-                STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT_ACTIVE,
-                STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT_INACTIVE)
+                global::STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT,
+                global::STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT_ACTIVE,
+                global::STRINGS.BUILDINGS.PREFABS.SMARTRESERVOIR.LOGIC_PORT_INACTIVE)
         };
         GeneratedBuildings.RegisterWithOverlay(OverlayScreen.GasVentIDs, ID);
         buildingDef.AddSearchTerms(SEARCH_TERMS.STORAGE);

@@ -3,6 +3,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
+namespace BigStorage;
+
 public class BigStorageLockerConfig : IBuildingConfig
 {
     public const string ID = "BigStorageLocker";

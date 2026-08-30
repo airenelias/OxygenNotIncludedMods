@@ -1,8 +1,8 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 
-namespace BigStorage
-{
+namespace BigStorage;
+
     public class StorageBasedTint : KMonoBehaviour, ISim1000ms
     {
         public void Sim1000ms(float dt)
@@ -37,4 +37,3 @@ namespace BigStorage
             kBatchedAnimController.SetSymbolTint((KAnimHashedString)"gas_cloud", colour);
         }
     }
-}

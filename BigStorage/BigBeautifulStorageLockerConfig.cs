@@ -4,6 +4,8 @@ using System.Linq;
 using TUNING;
 using UnityEngine;
 
+namespace BigStorage;
+
 public class BigBeautifulStorageLockerConfig : IBuildingConfig
 {
     public const string ID = "BigBeautifulStorageLocker";

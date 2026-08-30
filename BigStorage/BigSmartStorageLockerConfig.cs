@@ -4,6 +4,8 @@ using STRINGS;
 using TUNING;
 using UnityEngine;
 
+namespace BigStorage;
+
 internal class BigSmartStorageLockerConfig : IBuildingConfig
 {
     public const string ID = "BigSmartStorageLocker";
@@ -35,9 +37,9 @@ internal class BigSmartStorageLockerConfig : IBuildingConfig
             LogicPorts.Port.OutputPort(
                 FilteredStorage.FULL_PORT_ID,
                 new CellOffset(0, 1),
-                STRINGS.BUILDINGS.PREFABS.STORAGELOCKERSMART.LOGIC_PORT,
-                STRINGS.BUILDINGS.PREFABS.STORAGELOCKERSMART.LOGIC_PORT_ACTIVE,
-                STRINGS.BUILDINGS.PREFABS.STORAGELOCKERSMART.LOGIC_PORT_INACTIVE,
+                global::STRINGS.BUILDINGS.PREFABS.STORAGELOCKERSMART.LOGIC_PORT,
+                global::STRINGS.BUILDINGS.PREFABS.STORAGELOCKERSMART.LOGIC_PORT_ACTIVE,
+                global::STRINGS.BUILDINGS.PREFABS.STORAGELOCKERSMART.LOGIC_PORT_INACTIVE,
                 show_wire_missing_icon: true)
         };
         buildingDef.AddSearchTerms(SEARCH_TERMS.STORAGE);

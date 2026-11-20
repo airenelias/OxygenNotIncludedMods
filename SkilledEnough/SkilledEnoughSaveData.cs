@@ -65,7 +65,7 @@ namespace SkilledEnough
             // reset before saving just in case
             ResetSaveData(true);
             SaveVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            foreach (MinionResume minionResume in Components.MinionResumes)
+            foreach (MinionResume minionResume in Components.MinionResumes.Items)
             {
                 if (minionResume.HasTag(SkilledEnoughTools.SkilledEnough))
                 {
@@ -94,7 +94,7 @@ namespace SkilledEnough
             // support for older saves
             if (SaveVersion == null)
             {
-                foreach (MinionResume minionResume in Components.MinionResumes)
+                foreach (MinionResume minionResume in Components.MinionResumes.Items)
                 {
 #pragma warning disable CS0618
                     if (SkilledEnoughList.Contains(minionResume.GetIdentity.nameStringKey))
@@ -107,7 +107,7 @@ namespace SkilledEnough
                 }
             }
 
-            foreach (MinionResume minionResume in Components.MinionResumes)
+            foreach (MinionResume minionResume in Components.MinionResumes.Items)
             {
                 KPrefabID prefabId = minionResume.GetComponent<KPrefabID>();
                 if (prefabId == null)

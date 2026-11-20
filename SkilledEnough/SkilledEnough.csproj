@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Title>Skilled Enough</Title>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <Description>Hide excess skill point notifications for your Duplicants</Description>
     <Copyright>airenelias</Copyright>
     <SupportedBuild>679336</SupportedBuild>
@@ -11,7 +11,7 @@
 
   <PropertyGroup>
     <FileVersion>$(Version)</FileVersion>
-    <TargetFramework>net471</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <LangVersion>preview</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
